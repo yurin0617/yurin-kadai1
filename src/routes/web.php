@@ -20,5 +20,7 @@ Route::get('/', [ContactController::class, 'index']);
 // PG02: 確認画面（入力内容を保持して表示する）
 Route::post('/confirm', [ContactController::class, 'confirm']);
 
+Route::post('/contacts', [ContactController::class, 'store']);
+
 // PG03: 送信完了画面
 Route::post('/thanks', [ContactController::class, 'thanks']);
