@@ -33,11 +33,30 @@
                     </div>
                     <div class="form__group-content">
                         <div class="form__input--text">
-                            <input type="text" name="first_name" placeholder="例:山田" />
-                            <input type="text" name="last_name" placeholder="例:太郎" />
+                            <input type="text" name="first_name" placeholder="例:山田" value="{{ old('first_name') }}" />
+                            <div class="form__error">
+                                <!--バリデーション機能を実装したら記述します。-->
+                                @if ($errors->has('first_name'))
+                                <tr>
+                                    <th style="background-color: red">・</th>
+                                    <td>
+                                        {{$errors->first('first_name')}}
+                                    </td>
+                                </tr>
+                                @endif
+                            </div>
+                            <input type="text" name="last_name" placeholder="例:太郎" value="{{ old('last_name') }}" />
                         </div>
                         <div class="form__error">
                             <!--バリデーション機能を実装したら記述します。-->
+                            @if ($errors->has('last_name'))
+                            <tr>
+                                <th style="background-color: red">・</th>
+                                <td>
+                                    {{$errors->first('last_name')}}
+                                </td>
+                            </tr>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -59,6 +78,15 @@
                             </label>
                         </div>
                         <div class="form__error">
+                            <!--バリデーション機能を実装したら記述します。-->
+                            @if ($errors->has('gender'))
+                            <tr>
+                                <th style="background-color: red">・</th>
+                                <td>
+                                    {{$errors->first('gender')}}
+                                </td>
+                            </tr>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -69,10 +97,18 @@
                     </div>
                     <div class="form__group-content">
                         <div class="form__input--text">
-                            <input type="email" name="email" placeholder="例:test@example.com" />
+                            <input type="email" name="email" placeholder="例:test@example.com" value="{{ old('email') }}" />
                         </div>
                         <div class="form__error">
                             <!--バリデーション機能を実装したら記述します。-->
+                            @if ($errors->has('email'))
+                            <tr>
+                                <th style="background-color: red">・</th>
+                                <td>
+                                    {{$errors->first('email')}}
+                                </td>
+                            </tr>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -83,15 +119,15 @@
                     </div>
                     <div class="form__group-content">
                         <div class="form__input--text">
-                            <input type="tel" name="tel1" placeholder="080" />
+                            <input type="tel" name="tel1" placeholder="080" value="{{ old('tel1') }}" />
                         </div>
                         <span class="separator">-</span>
                         <div class="form__input--text">
-                            <input type="tel" name="tel2" placeholder="1234" />
+                            <input type="tel" name="tel2" placeholder="1234" value="{{ old('tel2') }}" />
                         </div>
                         <span class="separator">-</span>
                         <div class="form__input--text">
-                            <input type="tel" name="tel3" placeholder="5678" />
+                            <input type="tel" name="tel3" placeholder="5678" value="{{ old('tel3') }}" />
                         </div>
                         <div class="form__error">
                             <!--バリデーション機能を実装したら記述します。-->
@@ -105,9 +141,18 @@
                     </div>
                     <div class="form__group-content">
                         <div class="form__input--text">
-                            <input type="text" name="address" placeholder="例:東京都渋谷区千駄ヶ谷1-2-3">
+                            <input type="text" name="address" placeholder="例:東京都渋谷区千駄ヶ谷1-2-3" value="{{ old('address') }}" />
                         </div>
                         <div class="form__error">
+                            <!--バリデーション機能を実装したら記述します。-->
+                            @if ($errors->has('address'))
+                            <tr>
+                                <th style="background-color: red">・</th>
+                                <td>
+                                    {{$errors->first('address')}}
+                                </td>
+                            </tr>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -117,7 +162,7 @@
                     </div>
                     <div class="form__group-content">
                         <div class="form__input--text">
-                            <input type="text" name="building" placeholder="例:千駄ヶ谷マンション101">
+                            <input type="text" name="building" placeholder="例:千駄ヶ谷マンション101" value="{{ old('building') }}" />
                         </div>
                     </div>
                 </div>
@@ -127,7 +172,6 @@
                         <span class="form__label--required" style="color: red;">※</span>
                     </div>
                     <div class="form__group-content">
-                        
                         <div class="form__select--wrapper">
                             <select name="category_id" class="form__select">
                                 <option value="">選択してください</option>
@@ -139,6 +183,15 @@
                             </select>
                         </div>
                         <div class="form__error">
+                            <!--バリデーション機能を実装したら記述します。-->
+                            @if ($errors->has('category_id'))
+                            <tr>
+                                <th style="background-color: red">・</th>
+                                <td>
+                                    {{$errors->first('category_id')}}
+                                </td>
+                            </tr>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -149,16 +202,26 @@
                     </div>
                     <div class="form__group-content">
                         <div class="form__input--textarea">
-                            <textarea name="detail" placeholder="資料をいただきたいです"></textarea>
+                            <textarea name="detail" placeholder="資料をいただきたいです"> {{ old('detail') }}</textarea>
                         </div>
                         <div class="form__error">
+                            <!--バリデーション機能を実装したら記述します。-->
+                            @if ($errors->has('detail'))
+                            <tr>
+                                <th style="background-color: red">・</th>
+                                <td>
+                                    {{$errors->first('detail')}}
+                                </td>
+                            </tr>
+                            @endif
                         </div>
                     </div>
                 </div>
-                <div class="form__button">
-                    <button class="form__button-submit" type="submit">送信</button>
-                </div>
-            </form>
+        </div>
+        <div class="form__button">
+            <button class="form__button-submit" type="submit">送信</button>
+        </div>
+        </form>
         </div>
     </main>
 </body>
