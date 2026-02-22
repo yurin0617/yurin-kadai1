@@ -173,13 +173,10 @@
                     </div>
                     <div class="form__group-content">
                         <div class="form__select--wrapper">
-                            <select name="category_id" class="form__select">
-                                <option value="">選択してください</option>
-                                <option value="1">商品のお届けについて</option>
-                                <option value="2">商品の交換について</option>
-                                <option value="3">商品トラブル</option>
-                                <option value="4">ショップへのお問い合わせ</option>
-                                <option value="5">その他</option>
+                            <select class="search-form__item-select" name="category_id">
+                                @foreach ($categories as $category)
+                                <option value="{{ $category['id'] }}">{{ $category['content'] }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form__error">
@@ -219,7 +216,7 @@
                 </div>
         </div>
         <div class="form__button">
-            <button class="form__button-submit" type="submit">送信</button>
+            <button class="form__button-submit" type="submit">確認画面</button>
         </div>
         </form>
         </div>

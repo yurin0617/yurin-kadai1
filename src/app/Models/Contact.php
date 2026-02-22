@@ -19,4 +19,24 @@ class Contact extends Model
         'category_id',
         'detail'
     ];
+    public static $rules = array(
+        'first_name' => ['required', 'string', 'max:8'],
+        'last_name' => ['required', 'string', 'max:8'],
+        'gender' => ['required'],
+        'email' => ['required', 'string', 'email', 'max:255'],
+        'tel' => ['required', 'numeric', 'digits_between:1,15'],
+        'address' => ['required'],
+        'building' => ['nullable'],
+        'category_id' => ['required'],
+        'detail' => ['required', 'string', 'max:120'],
+    );
+    public function getDetail()
+    {
+        $txt = 'ID:' . $this->id . ' ' . $this->first_name . $this->last_name . '様 ' . $this->gender . $this->email . $this->tel . $this->address . $this->building . $this->category_id . $this->detail;
+        return $txt;
+    }
+    public function category()
+    {
+        return $this->belongsTo('App\Models\Category');
+    }
 }
