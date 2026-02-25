@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,8 @@ Route::post('/contacts', [ContactController::class, 'store']);
 
 // PG03: 送信完了画面
 Route::get('/thanks', [ContactController::class, 'thanks']);
+
+Route::middleware('auth')->group(function () {
+    // 例えば、お問い合わせの「一覧画面」など
+    Route::get('/admin', [ContactController::class, 'admin']);
+});

@@ -21,5 +21,7 @@ class DatabaseSeeder extends Seeder
 
         // Contactのダミーデータを35件生成
         Contact::factory()->count(35)->create();
+
+        $this->call(AdminusersTableSeeder::class);
     }
 }

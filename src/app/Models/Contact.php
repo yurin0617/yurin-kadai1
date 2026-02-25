@@ -32,11 +32,11 @@ class Contact extends Model
     );
     public function getDetail()
     {
-        $txt = 'ID:' . $this->id . ' ' . $this->first_name . $this->last_name . '様 ' . $this->gender . $this->email . $this->tel . $this->address . $this->building . $this->category_id . $this->detail;
+        $txt = 'ID:' . $this->id . ' ' . $this->first_name . $this->last_name . '様 ' . $this->gender . $this->email . $this->tel . $this->address . $this->building . $this->category_id->content . $this->detail;
         return $txt;
     }
     public function category()
     {
-        return $this->belongsTo('App\Models\Category');
+        return $this->belongsTo(Category::class);
     }
 }
