@@ -215,7 +215,6 @@
                         </div>
                     </div>
                 </div>
-        </div>
         <div class="form__button">
             <button class="form__button-submit" type="submit">確認画面</button>
         </div>
