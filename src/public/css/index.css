@@ -115,3 +115,11 @@
     color: white;
     border-color: #2c3e50;
 }
+.search-form {
+    display: flex;
+    justify-content: center;
+}
+.contact-table {
+    display: flex;
+    justify-content: center;
+}
