@@ -5,6 +5,7 @@
 リポジトリからダウンロード
 
 git clone XXXXXXXXX
+ダウンロードしたディレクトリの中にあるsrcディレクトリにある
 「.env.example」をコピーして「.env」を作成し DBの設定を変更
 
 cp .env.example .env
@@ -37,7 +38,10 @@ srcディレクトリにあるstorageディレクトリに権限を設定
 chmod -R 777 storage
 
 ## 使用技術(実行環境)
-ここにバージョンを記載
+PHP：8.1.34
+Laravel： 8.83.8
+MySQL：8.0.26
+Ngnix：1.21.1
 
 ## URL
 ここにURLを記載

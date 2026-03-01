@@ -18,8 +18,8 @@ class ContactFactory extends Factory
     {
         return [
             // max:8 なので realText(8) や 8文字以内の名前を指定
-            'first_name'  => $this->faker->lastName, // 名字
-            'last_name'   => $this->faker->firstName, // 名前
+            'first_name'  => $this->faker->firstName, // 名字
+            'last_name'   => $this->faker->lastName, // 名前
             'gender'      => $this->faker->randomElement([1, 2, 3]), // 例: 1=男, 2=女, 3=その他
             'email'       => $this->faker->unique()->safeEmail,
 
@@ -30,7 +30,10 @@ class ContactFactory extends Factory
             'building'    => $this->faker->secondaryAddress, // 建物名（nullableなのでそのままでOK）
 
             // category_id は既存のカテゴリからランダムに取得（例）
-            'category_id' => \App\Models\Category::inRandomOrder()->first()->id ?? 1,
+            'category_id' => function () {
+                return \App\Models\Category::inRandomOrder()->first()->id
+                    ?? \App\Models\Category::factory()->create()->id;
+            },
 
             // max:120 の文字列
             'detail'      => $this->faker->realText(120),

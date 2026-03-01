@@ -16,9 +16,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(CategoriesTableSeeder::class);
 
-        // 先にカテゴリを作ってから、それを利用するコンタクトを作成する
-        $this->call(CategoriesTableSeeder::class);
-
         // Contactのダミーデータを35件生成
         Contact::factory()->count(35)->create();
 

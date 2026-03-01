@@ -32,7 +32,7 @@ class Contact extends Model
     );
     public function getDetail()
     {
-        $txt = 'ID:' . $this->id . ' ' . $this->first_name . $this->last_name . '様 ' . $this->gender . $this->email . $this->tel . $this->address . $this->building . $this->category_id->content . $this->detail;
+        $txt = 'ID:' . $this->id . ' ' . $this->first_name . $this->last_name . '様 ' . $this->gender . $this->email . $this->tel . $this->address . $this->building . $this->category->content . $this->detail;
         return $txt;
     }
     public function category()

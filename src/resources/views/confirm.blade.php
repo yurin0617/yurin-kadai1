@@ -108,7 +108,9 @@
                 </div>
                 <div class="form__button">
                     <button class="form__button-submit" type="submit">送信</button>
+                    <button type="submit" name="action" value="back">修正する</button>
                 </div>
+            </form>
             </form>
         </div>
     </main>

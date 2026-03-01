@@ -22,18 +22,51 @@ class ContactController extends Controller
     }
     public function store(Request $request)
     {
-        $contact = $request->only(['first_name', 'last_name', 'gender', 'email', 'tel', 'address', 'building', 'category_id', 'detail']);
-        Contact::create($contact);
-        return redirect('/thanks');
+        if ($request->input('action') === 'back') {
+            return redirect()->route('contacts.index')->withInput(); // ★入力内容を持って戻る！
+        }
+
+        Contact::create($request->all());
+        return view('thanks');
     }
     public function thanks()
     {
         return view('thanks');
     }
-    public function admin()
+
+    public function admin(Request $request)
     {
-        $contacts = Contact::all();
-        $categories = Category::all();
-        return view('admin.index', compact('contacts', 'categories'));
+        $query = \App\Models\Contact::query();
+
+        if ($request->keyword) {
+            $query->where(function ($q) use ($request) {
+                $q->where('first_name', 'LIKE', "%{$request->keyword}%")
+                    ->orWhere('last_name', 'LIKE', "%{$request->keyword}%")
+                    ->orWhere('email', 'LIKE', "%{$request->keyword}%");
+            });
+        }
+
+        if ($request->gender) {
+            $query->where('gender', $request->gender);
+        }
+
+        if ($request->category_id) {
+            $query->where('category_id', $request->category_id);
+        }
+
+        if ($request->date) {
+            $query->whereDate('created_at', $request->date);
+        }
+
+        $contacts = $query->paginate(7);
+
+        $param = [
+            'input' => $request->keyword,
+            'contacts' => $contacts,
+            'categories' => \App\Models\Category::all(),
+            'request' => $request
+        ];
+
+        return view('admin.index', $param);
     }
 }

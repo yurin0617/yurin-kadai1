@@ -16,7 +16,7 @@ use App\Http\Controllers\AuthController;
 */
 
 // PG01: 入力画面
-Route::get('/', [ContactController::class, 'index']);
+Route::get('/', [ContactController::class, 'index'])->name('contacts.index');
 
 // PG02: 確認画面（入力内容を保持して表示する）
 Route::post('/confirm', [ContactController::class, 'confirm']);
@@ -27,6 +27,5 @@ Route::post('/contacts', [ContactController::class, 'store']);
 Route::get('/thanks', [ContactController::class, 'thanks']);
 
 Route::middleware('auth')->group(function () {
-    // 例えば、お問い合わせの「一覧画面」など
     Route::get('/admin', [ContactController::class, 'admin']);
 });
