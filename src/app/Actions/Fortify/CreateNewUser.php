@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\LoginRequest;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -21,6 +22,7 @@ class CreateNewUser implements CreatesNewUsers
     public function create(array $input): Adminuser
     {
         $validatedData = app(RegisterRequest::class)->validated();
+        $validatedData = app(LoginRequest::class)->validated();
 
         return Adminuser::create([
             'name' => $input['name'],
