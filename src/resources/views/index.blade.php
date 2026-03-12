@@ -24,7 +24,7 @@
             <div class="contact-form__heading">
                 <h2>Contact</h2>
             </div>
-            <form class="form" action="/confirm" method="post">
+            <form class="form" action="/confirm" method="post" novalidate>
                 @csrf
                 <div class="form__group">
                     <div class="form__group-title">
@@ -130,7 +130,34 @@
                             <input type="tel" name="tel3" placeholder="5678" value="{{ old('tel3') }}" />
                         </div>
                         <div class="form__error">
-                            <!--バリデーション機能を実装したら記述します。-->
+                            @if ($errors->has('tel1'))
+                            <tr>
+                                <th style="background-color: red">・</th>
+                                <td>
+                                    {{$errors->first('tel1')}}
+                                </td>
+                            </tr>
+                            @endif
+                        </div>
+                        <div class="form__error">
+                            @if ($errors->has('tel2'))
+                            <tr>
+                                <th style="background-color: red">・</th>
+                                <td>
+                                    {{$errors->first('tel2')}}
+                                </td>
+                            </tr>
+                            @endif
+                        </div>
+                        <div class="form__error">
+                            @if ($errors->has('tel3'))
+                            <tr>
+                                <th style="background-color: red">・</th>
+                                <td>
+                                    {{$errors->first('tel3')}}
+                                </td>
+                            </tr>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -215,10 +242,10 @@
                         </div>
                     </div>
                 </div>
-        <div class="form__button">
-            <button class="form__button-submit" type="submit">確認画面</button>
-        </div>
-        </form>
+                <div class="form__button">
+                    <button class="form__button-submit" type="submit">確認画面</button>
+                </div>
+            </form>
         </div>
     </main>
 </body>
