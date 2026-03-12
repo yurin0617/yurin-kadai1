@@ -9,7 +9,7 @@
     <div class="register-form__heading">
         <h2>Register</h2>
     </div>
-    <form class="form" action="/register" method="post">
+    <form class="form" action="/register" method="post" novalidate>
         @csrf
         <div class="form__group">
             <div class="form__group-title">
@@ -21,14 +21,9 @@
                 </div>
                 <div class="form__error">
                     <!--バリデーション機能を実装したら記述します。-->
-                    @if ($errors->has('name'))
-                    <tr>
-                        <th style="background-color: red">・</th>
-                        <td>
-                            {{$errors->first('first_name')}}
-                        </td>
-                    </tr>
-                    @endif
+                    @error('name')
+                    {{ $message }}
+                    @enderror
                 </div>
             </div>
         </div>
