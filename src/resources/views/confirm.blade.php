@@ -65,6 +65,9 @@
                                 <p>{{ $contact['tel'] }}</p>
                                 {{-- 送信用：hiddenでデータを裏側に持たせる --}}
                                 <input type="hidden" name="tel" value="{{ $contact['tel'] }}" readonly />
+                                <input type="hidden" name="tel1" value="{{ $contact['tel1'] }}" readonly />
+                                <input type="hidden" name="tel2" value="{{ $contact['tel2'] }}" readonly />
+                                <input type="hidden" name="tel3" value="{{ $contact['tel3'] }}" readonly />
                             </td>
                         </tr>
                         <tr class="confirm-table__row">

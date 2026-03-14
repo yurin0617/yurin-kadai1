@@ -203,7 +203,7 @@
                             <select class="search-form__item-select" name="category_id">
                                 <option value="" selected disabled>選択してください</option>
                                 @foreach ($categories as $category)
-                                <option value="{{ $category['id'] }}">{{ $category['content'] }}</option>
+                                <option value="{{ $category['id'] }}" {{ old('category_id')==$category['id'] ? 'selected' : '' }}>{{ $category['content'] }}</option>
                                 @endforeach
                             </select>
                         </div>
