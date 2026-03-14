@@ -1,30 +1,10 @@
-<!DOCTYPE html>
-<html lang="ja">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin - お問い合わせ一覧</title>
-    <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/index.css') }}" />
-</head>
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/index.css') }}">
+@endsection
 
-<body>
-    <header class="header">
-        <div class="header__inner">
-            <a class="header__logo" href="/">
-                Fashionably Late
-            </a>
-            <nav>
-                <form class="form" action="/logout" method="post">
-                    @csrf
-                    <button class="header-nav__button">logout</button>
-                </form>
-            </nav>
-        </div>
-    </header>
-
+@section('content')
     <main>
         <div class="contact-form__content">
             <div class="contact-form__heading">
@@ -89,14 +69,14 @@
                         {{ optional($contact->category)->content ?? '未設定' }}
                     </td>
                     <td class="contact-table__item">
+                        <form class="search-form" action="/admin/detail" method="get">
+                             <input type="hidden" name="id" value="{{ $contact['id'] }}"/>
                         <button class="contact-table__detail-btn">詳細</button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach
             </table>
-            </table>
         </div>
     </main>
-</body>
-
-</html>
+@endsection

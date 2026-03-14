@@ -69,4 +69,9 @@ class ContactController extends Controller
 
         return view('admin.index', $param);
     }
+    public function show(Request $request)
+    {
+        $contact=Contact::find($request->id);
+        return view('admin.show', compact('contact'));
+    }
 }

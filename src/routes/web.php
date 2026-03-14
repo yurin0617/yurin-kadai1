@@ -28,4 +28,6 @@ Route::get('/thanks', [ContactController::class, 'thanks']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/admin', [ContactController::class, 'admin']);
+     Route::get('/admin/detail', [ContactController::class, 'show']);
+    
 });
