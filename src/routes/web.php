@@ -23,9 +23,6 @@ Route::post('/confirm', [ContactController::class, 'confirm']);
 
 Route::post('/contacts', [ContactController::class, 'store']);
 
-// PG03: 送信完了画面
-Route::get('/thanks', [ContactController::class, 'thanks']);
-
 Route::middleware('auth')->group(function () {
     Route::get('/admin', [ContactController::class, 'admin']);
      Route::get('/admin/detail', [ContactController::class, 'show']);

@@ -6,19 +6,22 @@ use Illuminate\Http\Request;
 use App\Models\Contact;
 use App\Http\Requests\ContactRequest;
 use App\Models\Category;
+use App\Models\Channel;
 
 class ContactController extends Controller
 {
     public function index()
     {
         $categories = Category::all();
-        return view('index', compact('categories'));
+        $channels = Channel::all();
+        return view('index', compact('categories','channels'));
     }
     public function confirm(ContactRequest $request)
     {
         $contact = $request->only(['first_name', 'last_name', 'gender', 'email', 'tel1', 'tel2', 'tel3', 'address', 'building', 'category_id', 'detail']);
         $contact['tel'] = $request->tel1 . $request->tel2 . $request->tel3;
-        return view('confirm', compact('contact'));
+        $channels = Channel::find($request->channel_ids);
+        return view('confirm', compact('contact', 'channels'));
     }
     public function store(Request $request)
     {
@@ -26,11 +29,8 @@ class ContactController extends Controller
             return redirect()->route('contacts.index')->withInput(); // ★入力内容を持って戻る！
         }
 
-        Contact::create($request->all());
-        return view('thanks');
-    }
-    public function thanks()
-    {
+        $contact=Contact::create($request->all());
+        $contact->channels()->sync($request->channel_ids);
         return view('thanks');
     }
 

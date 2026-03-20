@@ -107,13 +107,21 @@
                                 <input type="hidden" name="detail" value="{{ $contact['detail'] }}" readonly />
                             </td>
                         </tr>
+                        <tr class="confirm-table__row">
+                            <th class="confirm-table__header">どこで知りましたか？</th>
+                            <td class="confirm-table__text">
+                                @foreach($channels as $channel)
+                                <input type="text" name="channel_contents[]" value="{{ $channel->content }}" readonly />
+                                <input type="hidden" name="channel_ids[]" value="{{ $channel->id }}" />
+                                @endforeach
+                            </td>
+                        </tr>
                     </table>
                 </div>
                 <div class="form__button">
                     <button class="form__button-submit" type="submit">送信</button>
                     <button type="submit" name="action" value="back">修正する</button>
                 </div>
-            </form>
             </form>
         </div>
     </main>

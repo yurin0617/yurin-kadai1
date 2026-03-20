@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         Contact::factory()->count(35)->create();
 
         $this->call(AdminusersTableSeeder::class);
+        $this->call(ChannelsTableSeeder::class);
     }
 }

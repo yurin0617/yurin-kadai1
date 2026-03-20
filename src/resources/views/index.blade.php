@@ -242,6 +242,27 @@
                         </div>
                     </div>
                 </div>
+                <div class="form__group">
+                    <div class="form__group-title">
+                        <span class="form__label--item">どこで知りましたか？</span>
+                        <span class="form__label--required" style="color: red;">※</span>
+                    </div>
+                    <div class="form__group-content">
+                        <div class="form__input--checkbox">
+                            @foreach($channels as $channel)
+                            <label>
+                                <input type="checkbox" name="channel_ids[]" value="{{ $channel->id }}">
+                                {{ $channel->content}}
+                            </label>
+                            @endforeach
+                        </div>
+                        <div class="form__error">
+                            @error('channel_ids[]')
+                            {{ $message }}
+                            @enderror
+                        </div>
+                    </div>
+                </div>
                 <div class="form__button">
                     <button class="form__button-submit" type="submit">確認画面</button>
                 </div>
