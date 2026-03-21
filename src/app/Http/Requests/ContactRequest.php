@@ -27,7 +27,7 @@ class ContactRequest extends FormRequest
             'first_name' => ['required', 'string', 'max:8'],
             'last_name' => ['required', 'string', 'max:8'],
             'gender' => ['required'],
-            'email' => ['required', 'string', 'email', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:contacts,email'],
             'tel1' => ['required', 'numeric', 'digits_between:1,5'],
             'tel2' => ['required', 'numeric', 'digits_between:1,5'],
             'tel3' => ['required', 'numeric', 'digits_between:1,5'],
@@ -35,6 +35,7 @@ class ContactRequest extends FormRequest
             'building' => ['nullable'],
             'category_id' => ['required'],
             'detail' => ['required', 'string', 'max:120'],
+            'image_file' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
         ];
     }
     public function messages()
@@ -45,6 +46,7 @@ class ContactRequest extends FormRequest
             'gender.required' => '性別を選択してください',
             'email.required' => 'メールアドレスを入力してください',
             'email.email' => 'メールアドレスはメール形式で入力してください',
+            'email.unique' => 'メールアドレスが既に存在します',
             'tel1.required' => '電話番号を入力してください',
             'tel1.numeric' => '電話番号は 半角英数字で入力してください',
             'tel1.digits_between' => '電話番号は 5桁まで数字で入力してください',
@@ -58,6 +60,10 @@ class ContactRequest extends FormRequest
             'category_id.required' => 'お問い合わせの種類を選択してください',
             'detail.required' => 'お問い合わせ内容を入力してください',
             'detail.max' => 'お問い合わせ内容は120文字以内で入力してください',
-        ];
+            'image_file.required' => '画像ファイルを選択してください',
+            'image_file.image'    => '指定されたファイルが画像ではありません',
+            'image_file.mimes'    => '画像の形式は .jpeg, .png, .jpg のいずれかを選択してください',
+            'image_file.max'      => 'ファイルサイズは2MB以内でアップロードしてください',
+            ];
     }
 }
