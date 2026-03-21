@@ -18,8 +18,9 @@ class ContactController extends Controller
     }
     public function confirm(ContactRequest $request)
     {
-        $contact = $request->only(['first_name', 'last_name', 'gender', 'email', 'tel1', 'tel2', 'tel3', 'address', 'building', 'category_id', 'detail']);
+        $contact = $request->only(['first_name', 'last_name', 'gender', 'email', 'tel1', 'tel2', 'tel3', 'address', 'building', 'category_id', 'detail', 'image_file']);
         $contact['tel'] = $request->tel1 . $request->tel2 . $request->tel3;
+        $contact['image_file'] = $request->image_file->store('img', 'public');
         $channels = Channel::find($request->channel_ids);
         return view('confirm', compact('contact', 'channels'));
     }

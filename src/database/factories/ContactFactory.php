@@ -37,6 +37,7 @@ class ContactFactory extends Factory
 
             // max:120 の文字列
             'detail'      => $this->faker->realText(120),
+            'image_file' => 'img/sample.png',
         ];
     }
 }

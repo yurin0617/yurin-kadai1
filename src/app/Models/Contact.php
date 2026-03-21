@@ -17,7 +17,8 @@ class Contact extends Model
         'address',
         'building',
         'category_id',
-        'detail'
+        'detail',
+        'image_file'
     ];
     public function channels()
     {

@@ -24,7 +24,7 @@
             <div class="contact-form__heading">
                 <h2>Contact</h2>
             </div>
-            <form class="form" action="/confirm" method="post" novalidate>
+            <form class="form" action="/confirm" method="post" enctype="multipart/form-data" novalidate>
                 @csrf
                 <div class="form__group">
                     <div class="form__group-title">
@@ -251,7 +251,7 @@
                         <div class="form__input--checkbox">
                             @foreach($channels as $channel)
                             <label>
-                                <input type="checkbox" name="channel_ids[]" value="{{ $channel->id }}">
+                                <input type="checkbox" name="channel_ids[]" value="{{ $channel->id }}" {{ is_array(old('channel_ids')) && in_array($channel->id, old('channel_ids')) ? 'checked' : '' }}>
                                 {{ $channel->content}}
                             </label>
                             @endforeach
@@ -261,6 +261,22 @@
                             {{ $message }}
                             @enderror
                         </div>
+                    </div>
+                </div>
+                <div class="form__group">
+                    <div class="form__group-title">
+                        <span class="form__label--item">画像ファイル</span>
+                        <span class="form__label--required" style="color: red;">※</span>
+                    </div>
+                    <div class="form__group-content">
+                        <div class="form__input--file">
+                            <input type="file" name="image_file">
+                        </div>
+                    </div>
+                    <div class="form__error">
+                        @error('image_file')
+                        {{ $message }}
+                        @enderror
                     </div>
                 </div>
                 <div class="form__button">

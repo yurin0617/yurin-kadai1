@@ -116,6 +116,13 @@
                                 @endforeach
                             </td>
                         </tr>
+                        <tr class="confirm-table__row">
+                            <th class="confirm-table__header">画像ファイル</th>
+                            <td class="confirm-table__text">
+                                <img src="{{'/storage/'.$contact['image_file']}}">
+                                <input type="hidden" name="image_file" value="{{ $contact['image_file'] }}">
+                            </td>
+                        </tr>
                     </table>
                 </div>
                 <div class="form__button">
