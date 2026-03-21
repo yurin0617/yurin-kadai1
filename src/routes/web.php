@@ -25,6 +25,5 @@ Route::post('/contacts', [ContactController::class, 'store']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/admin', [ContactController::class, 'admin']);
-     Route::get('/admin/detail', [ContactController::class, 'show']);
-    
+    Route::get('/admin/detail', [ContactController::class, 'show']);
 });

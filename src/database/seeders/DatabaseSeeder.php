@@ -15,11 +15,21 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(CategoriesTableSeeder::class);
+        $this->call(ChannelsTableSeeder::class);
+        $this->call(AdminusersTableSeeder::class);
+
+        $channels = \App\Models\Channel::all();
 
         // Contactのダミーデータを35件生成
-        Contact::factory()->count(35)->create();
-
-        $this->call(AdminusersTableSeeder::class);
-        $this->call(ChannelsTableSeeder::class);
+        Contact::factory()->count(35)->create()->each
+        (
+            function ($contact) use ($channels)
+            {
+                $contact->channels()->attach
+                (
+                    $channels->random(rand(1, 2))->pluck('id')->toArray()
+                );
+            }
+        );
     }
 }

@@ -73,6 +73,7 @@ class ContactController extends Controller
     public function show(Request $request)
     {
         $contact=Contact::find($request->id);
-        return view('admin.show', compact('contact'));
+        $channels = $contact->channels;
+        return view('admin.show', compact('contact','channels'));
     }
 }

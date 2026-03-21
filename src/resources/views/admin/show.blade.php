@@ -22,6 +22,15 @@
     <div>{{ $contact->building }}</div>
     {{ optional($contact->category)->content ?? '未設定' }}
     <div>{{ $contact->detail }}</div>
+    @foreach($channels as $channel)
+    <div>{{ $channel->content }}</div>
+    @if(!$loop->last), @endif @endforeach
+    <div>@if($contact->image_file)
+        <img src="{{ asset('storage/' . $contact->image_file) }}">
+        @else
+        <p>画像はアップロードされていません</p>
+        @endif
+    </div>
 
 </main>
 @endsection
