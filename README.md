@@ -37,7 +37,7 @@ php artisan db:seed
 srcディレクトリにあるstorageディレクトリに権限を設定
 
 chmod -R 777 storage
-```
+
 
 ## 使用技術(実行環境)
 PHP：8.1.34

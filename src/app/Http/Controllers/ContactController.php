@@ -37,7 +37,7 @@ class ContactController extends Controller
 
     public function admin(Request $request)
     {
-        $query = \App\Models\Contact::query();
+        $query = Contact::query();
 
         if ($request->keyword) {
             $query->where(function ($q) use ($request) {
